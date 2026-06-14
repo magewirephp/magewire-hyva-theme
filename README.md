@@ -4,7 +4,9 @@
 
 > Makes [Magewire](https://github.com/magewirephp/magewire) feel native to the Hyvä theme — so reactive, server-driven components just work, without writing JavaScript.
 
-This is the compatibility layer between [Magewire](https://github.com/magewirephp/magewire) v3 and the [Hyvä](https://hyva.io) frontend. It wires Magewire into the Hyvä asset pipeline, hands AlpineJS off to Magewire, bridges Magewire's flash messages to the Hyvä notifier, and keeps Hyvä Checkout components built for Magewire v1 working on v3.
+This is the compatibility layer between [Magewire](https://github.com/magewirephp/magewire) v3 and the [Hyvä](https://hyva.io) frontend. It wires Magewire into the Hyvä asset pipeline, hands AlpineJS off to Magewire, and bridges Magewire's flash messages to the Hyvä notifier.
+
+> Hyvä Checkout backwards compatibility lives in a separate module: [`magewirephp/magewire-hyva-checkout`](https://github.com/magewirephp/magewire-hyva-checkout).
 
 ## What it does
 
@@ -20,31 +22,12 @@ Magewire already bundles AlpineJS. To avoid loading Alpine twice, the module dis
 
 Bridges the Magewire `magewire:flash-messages:dispatch` event to Hyvä's message/notifier UI, so server-side flash messages dispatched from a component surface through the theme's native notification component.
 
-### Hyvä Checkout backwards compatibility
-
-Hyvä Checkout was built on Magewire v1 (Livewire v2). Magewire v3 (Livewire v3) changed the `wire:` directive and `entangle` semantics:
-
-| Magewire v1 (Livewire v2) | Magewire v3 (Livewire v3)      |
-|---------------------------|--------------------------------|
-| `wire:model` (instant)    | `wire:model.live`              |
-| `wire:model.defer`        | `wire:model` (now the default) |
-| `wire:model.lazy`         | `wire:model.blur`              |
-| `$wire.entangle()` (live) | `$wire.entangle()` (deferred)  |
-
-The `SupportHyvaCheckoutBackwardsCompatibility` Magewire feature flags components that need the old behavior by pushing a `bc.enabled` memo into the snapshot. The flag is resolved, in priority order, from:
-
-1. The `#[HandleBackwardsCompatibility]` attribute on the component class
-2. A previously hydrated value from the component's data store
-3. Whether the component lives inside the `hyva-checkout-main` layout container
-
-Frontend JS then reads the flag to migrate `wire:model` directives and make `entangle` default to live — so existing Hyvä Checkout components run on Magewire v3 unchanged.
-
 ## Requirements
 
 - `magewirephp/magewire` `>=3.2`
 - `Hyva_Theme`
 
-The module declares a `sequence` after `Magewirephp_Magewire`, `Hyva_Theme`, and `Hyva_Checkout`.
+The module declares a `sequence` after `Magewirephp_Magewire` and `Hyva_Theme`.
 
 ## Installation
 
