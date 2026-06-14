@@ -4,23 +4,9 @@
 
 > Makes [Magewire](https://github.com/magewirephp/magewire) feel native to the Hyvä theme — so reactive, server-driven components just work, without writing JavaScript.
 
-This is the compatibility layer between [Magewire](https://github.com/magewirephp/magewire) v3 and the [Hyvä](https://hyva.io) frontend. It wires Magewire into the Hyvä asset pipeline, hands AlpineJS off to Magewire, and bridges Magewire's flash messages to the Hyvä notifier.
+This is the compatibility layer between [Magewire](https://github.com/magewirephp/magewire) v3 and the [Hyvä](https://hyva.io) frontend.
 
 > Hyvä Checkout backwards compatibility lives in a separate module: [`magewirephp/magewire-hyva-checkout`](https://github.com/magewirephp/magewire-hyva-checkout).
-
-## What it does
-
-### Tailwind / asset registration
-
-Magewire and this module ship frontend assets (AlpineJS plugins, Tailwind sources). On the `hyva_config_generate_before` event the module registers both module paths as Hyvä [extensions](https://docs.hyva.io/hyva-themes/compatibility-modules/tailwind-config-merging.html), so their styles and scripts are picked up by the Hyvä Tailwind build automatically.
-
-### AlpineJS consolidation
-
-Magewire already bundles AlpineJS. To avoid loading Alpine twice, the module disables Hyvä's standalone `script-alpine-js` and moves it under Magewire's loader, guaranteeing Alpine is initialized **before** Magewire boots.
-
-### Flash messages
-
-Bridges the Magewire `magewire:flash-messages:dispatch` event to Hyvä's message/notifier UI, so server-side flash messages dispatched from a component surface through the theme's native notification component.
 
 ## Requirements
 
