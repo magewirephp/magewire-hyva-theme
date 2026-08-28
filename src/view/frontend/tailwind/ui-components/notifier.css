@@ -30,6 +30,27 @@
         overflow-wrap: anywhere;
         cursor: pointer;
         gap: 0.5rem;
+
+        & .magewire-notifier-occurrences {
+            @apply bg-gray-500 text-black font-semibold shadow-md;
+        }
+
+        &.success .magewire-notifier-occurrences {
+            @apply bg-green-50;
+        }
+
+        &.info .magewire-notifier-occurrences,
+        &.notice .magewire-notifier-occurrences {
+            @apply bg-blue-50;
+        }
+
+        &.warning .magewire-notifier-occurrences {
+            @apply bg-yellow-50;
+        }
+
+        &.error .magewire-notifier-occurrences {
+            @apply bg-red-50;
+        }
     }
 }
 
