@@ -8,7 +8,7 @@ async function visitBootstrapFixture(page) {
         window.magewireScriptBootstrapEvents = [];
 
         document.addEventListener('alpine:init', () => {
-            document.getElementById('magewire-runtime-config')
+            document.getElementById('magewire-runtime')
                 ?.setAttribute('data-extension-probe', 'forwarded');
         }, { once: true });
 
@@ -41,16 +41,16 @@ test.describe('Magewire Hyvä Playwright — Script Bootstrap', () => {
         await visitBootstrapFixture(page);
 
         const script = page.locator('#magewire-script');
-        const runtimeConfig = page.locator('#magewire-runtime-config');
+        const runtime = page.locator('#magewire-runtime');
 
         await expect(script).toHaveCount(1);
         await expect(script).not.toHaveAttribute('x-data');
         await expect(script).not.toHaveAttribute('x-bind');
         await expect(script).toHaveAttribute('data-navigate-once', 'true');
 
-        await expect(runtimeConfig).toHaveAttribute('hidden', '');
-        await expect(runtimeConfig).toHaveAttribute('x-data', 'magewireScript');
-        await expect(runtimeConfig).toHaveAttribute('x-bind', 'magewireScriptBindings');
+        await expect(runtime).toHaveAttribute('hidden', '');
+        await expect(runtime).toHaveAttribute('x-data', 'magewireRuntime');
+        await expect(runtime).toHaveAttribute('x-bind', 'magewireRuntimeBindings');
     });
 
     test('forwards runtime and extension data before Livewire is initialized', async ({ page }) => {
@@ -74,10 +74,35 @@ test.describe('Magewire Hyvä Playwright — Script Bootstrap', () => {
         expect(livewireInitialized.updateUri).toMatch(/\/magewire\/update/);
         expect(livewireInitialized.extensionProbe).toBe('forwarded');
 
-        const runtimeConfig = page.locator('#magewire-runtime-config');
-        await expect(runtimeConfig).not.toHaveAttribute('data-csrf');
-        await expect(runtimeConfig).not.toHaveAttribute('data-update-uri');
-        await expect(runtimeConfig).not.toHaveAttribute('data-extension-probe');
+        const runtime = page.locator('#magewire-runtime');
+        await expect(runtime).not.toHaveAttribute('data-csrf');
+        await expect(runtime).not.toHaveAttribute('data-update-uri');
+        await expect(runtime).not.toHaveAttribute('data-extension-probe');
+    });
+
+    test('keeps the deprecated script providers operational', async ({ page }) => {
+        await visitBootstrapFixture(page);
+
+        const attributes = await page.evaluate(() => {
+            const probe = document.createElement('div');
+            probe.setAttribute('x-data', 'magewireScript');
+            probe.setAttribute('x-bind', 'magewireScriptBindings');
+            document.body.appendChild(probe);
+
+            window.Alpine.initTree(probe);
+
+            const attributes = {
+                csrf: probe.getAttribute('data-csrf'),
+                updateUri: probe.getAttribute('data-update-uri'),
+            };
+
+            probe.remove();
+
+            return attributes;
+        });
+
+        expect(attributes.csrf).toMatch(/\S/);
+        expect(attributes.updateUri).toMatch(/\/magewire\/update/);
     });
 
     test('completes a Magewire request with the forwarded configuration', async ({ page }) => {

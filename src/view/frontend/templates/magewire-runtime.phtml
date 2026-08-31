@@ -19,16 +19,30 @@ $magewireFragment = $magewireViewModel->utils()->fragment();
 ?>
 <?php if ($magewireUtility->canRequireMagewireJsLibrary()): ?>
     <div
-        id="magewire-runtime-config"
+        id="magewire-runtime"
         hidden
-        x-data="magewireScript"
-        x-bind="magewireScriptBindings"
+        x-data="magewireRuntime"
+        x-bind="magewireRuntimeBindings"
     ></div>
 
     <?php $script = $magewireFragment->make()->script()->start() ?>
     <script>
+        document.addEventListener('alpine:init', () => {
+            if (typeof window.magewireRuntime !== 'function'
+                && typeof window.magewireScript === 'function'
+            ) {
+                Alpine.data('magewireRuntime', window.magewireScript);
+            }
+
+            if (typeof window.magewireRuntimeBindings !== 'function'
+                && typeof window.magewireScriptBindings === 'function'
+            ) {
+                Alpine.bind('magewireRuntimeBindings', window.magewireScriptBindings);
+            }
+        }, { once: true });
+
         document.addEventListener('alpine:initialized', () => {
-            const source = document.getElementById('magewire-runtime-config');
+            const source = document.getElementById('magewire-runtime');
             const target = document.getElementById('magewire-script');
 
             if (! source || ! target) {
