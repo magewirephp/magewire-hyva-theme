@@ -20,6 +20,10 @@
         <referenceBlock name="script-alpine-js"
                         template="Magewirephp_MagewireHyvaTheme::overwrite/Hyva_Theme/page/js/alpinejs.phtml"
         >
+            <block name="script-alpine-js-magewire-runtime-config"
+                   template="Magewirephp_MagewireHyvaTheme::magewire-runtime-config.phtml"
+                   before="script-alpine-js-script"
+            />
             <block name="script-alpine-js-script"
                    template="Magewirephp_MagewireHyvaTheme::script.phtml"
                    after="-"

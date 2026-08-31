@@ -18,6 +18,7 @@ use Magento\Framework\View\Element\Template;
 $magewireViewModel = $block->getData('view_model');
 
 $magewireUtility = $magewireViewModel->utils()->magewire();
+$frontendAssets = $magewireUtility->mechanisms()->frontendAssets();
 
 // The Hyvä theme requires AlpineJS to function. Magewire ships with its own bundled version of AlpineJS,
 // so when Magewire is present and active on the page, it acts as the AlpineJS provider for Hyvä as well.
@@ -39,9 +40,8 @@ $magewireUtility = $magewireViewModel->utils()->magewire();
 <?php if ($magewireUtility->canRequireMagewireJsLibrary()): ?>
     <script
         id="magewire-script"
-        src="<?= $escaper->escapeUrl($magewireUtility->mechanisms()->frontendAssets()->getScriptPath()) ?>"
-        x-data="magewireScript"
-        x-bind="magewireScriptBindings"
+        src="<?= $escaper->escapeUrl($frontendAssets->getScriptPath()) ?>"
+        <?= /* @noEscape */ $frontendAssets->getScriptAttributes() ?>
     ></script>
 <?php else: ?>
     <?= $block->getChildHtml() ?>
