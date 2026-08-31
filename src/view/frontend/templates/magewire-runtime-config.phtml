@@ -15,6 +15,7 @@ use Magento\Framework\View\Element\Template;
 
 $magewireViewModel = $block->getData('view_model');
 $magewireUtility = $magewireViewModel->utils()->magewire();
+$magewireFragment = $magewireViewModel->utils()->fragment();
 ?>
 <?php if ($magewireUtility->canRequireMagewireJsLibrary()): ?>
     <div
@@ -23,4 +24,24 @@ $magewireUtility = $magewireViewModel->utils()->magewire();
         x-data="magewireScript"
         x-bind="magewireScriptBindings"
     ></div>
+
+    <?php $script = $magewireFragment->make()->script()->start() ?>
+    <script>
+        document.addEventListener('alpine:initialized', () => {
+            const source = document.getElementById('magewire-runtime-config');
+            const target = document.getElementById('magewire-script');
+
+            if (! source || ! target) {
+                return;
+            }
+
+            Array.from(source.attributes)
+                .filter(attribute => attribute.name.startsWith('data-'))
+                .forEach(attribute => {
+                    target.setAttribute(attribute.name, attribute.value);
+                    source.removeAttribute(attribute.name);
+                });
+        }, { once: true });
+    </script>
+    <?php $script->end() ?>
 <?php endif ?>
