@@ -32,7 +32,7 @@ npm run build
 
 ## Documentation
 
-- [CSP-safe Magewire script bootstrap](docs/csp-script-bootstrap.md)
+- [Hyvä CSP script bootstrap](https://docs.magewirephp.nl/pages/theming/csp-script-bootstrap.html)
 - [Hyvä documentation](https://docs.hyva.io/)
 - [Magewire documentation](https://github.com/magewirephp/magewire)
 
