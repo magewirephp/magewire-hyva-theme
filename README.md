@@ -32,7 +32,9 @@ npm run build
 
 ## Documentation
 
-See the [Hyvä docs](https://docs.hyva.io/) and the [Magewire docs](https://github.com/magewirephp/magewire).
+- [Hyvä CSP script bootstrap](https://docs.magewirephp.nl/pages/theming/csp-script-bootstrap.html)
+- [Hyvä documentation](https://docs.hyva.io/)
+- [Magewire documentation](https://github.com/magewirephp/magewire)
 
 ## Security Vulnerabilities
 

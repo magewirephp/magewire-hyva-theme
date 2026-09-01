@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="1column"
+>
+    <body>
+        <referenceContainer name="content">
+            <block name="magewire-hyva.playwright.script-bootstrap.counter"
+                   template="Magewirephp_MagewireHyvaTheme::tests/magewire/playwright/script_bootstrap/counter.phtml"
+            >
+                <arguments>
+                    <argument name="magewire" xsi:type="object" shared="false">
+                        Magewirephp\MagewireHyvaTheme\Magewire\Playwright\ScriptBootstrap\Counter
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
