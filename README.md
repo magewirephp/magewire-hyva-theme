@@ -10,7 +10,7 @@ This is the compatibility layer between [Magewire](https://github.com/magewireph
 
 ## Requirements
 
-- `magewirephp/magewire` `>=3.2`
+- `magewirephp/magewire` `>=3.7`
 - `Hyva_Theme`
 
 The module declares a `sequence` after `Magewirephp_Magewire` and `Hyva_Theme`.
@@ -23,12 +23,9 @@ bin/magento module:enable Magewirephp_MagewireHyvaTheme
 bin/magento setup:upgrade
 ```
 
-Rebuild the Hyvä theme so the merged Tailwind config and assets are picked up:
-
-```bash
-cd app/design/frontend/<Vendor>/<theme>/web/tailwind
-npm run build
-```
+No frontend build is required. Magewire core ships complete,
+framework-independent component styles, and this compatibility module loads
+its optional Hyvä presentation as browser-ready vanilla CSS.
 
 ## Documentation
 
