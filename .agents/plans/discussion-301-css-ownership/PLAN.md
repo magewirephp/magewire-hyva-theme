@@ -11,6 +11,8 @@ vanilla Hyvä visual override through Magento layout.
 - Current type: Git Discussion
 - GitHub discussion: https://github.com/magewirephp/magewire/discussions/301
 - Companion core work: `magewirephp/magewire`
+- Core pull request: https://github.com/magewirephp/magewire/pull/305
+- Pull request: https://github.com/magewirephp/magewire-hyva-theme/pull/7 (draft)
 
 # Goal
 
@@ -56,3 +58,5 @@ from being installed with an older core that does not provide them.
 - 2026-09-09: Verified the core-only computed styles and the companion override
   cascade in Chromium; the companion changes presentation without supplying
   any structural dependency.
+- 2026-09-09: Opened draft PR #7, blocked on core PR #305 and the Magewire 3.7
+  release.
