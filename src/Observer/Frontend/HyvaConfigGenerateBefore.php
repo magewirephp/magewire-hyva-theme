@@ -31,10 +31,7 @@ class HyvaConfigGenerateBefore implements ObserverInterface
     {
         $config = $event->getData('config');
         $extensions = $config->hasData('extensions') ? $config->getData('extensions') : [];
-        $path = $this->componentRegistrar->getPath(
-            ComponentRegistrar::MODULE,
-            'Magewirephp_MagewireHyvaTheme'
-        );
+        $path = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Magewirephp_MagewireHyvaTheme');
         $extension = ['src' => substr($path, strlen(BP) + 1)];
 
         if (! in_array($extension, $extensions, true)) {
