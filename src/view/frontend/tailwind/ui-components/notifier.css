@@ -1,0 +1,60 @@
+.magewire-notifier .magewire-notifier-item.message[data-type] {
+    @apply border-0 rounded bg-gray-100 text-black font-semibold shadow-xl;
+
+    max-inline-size: 70ch;
+    margin-block-end: 0;
+    padding-block: 0.875rem;
+    padding-inline: 1rem;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    font-size: inherit;
+    line-height: inherit;
+    overflow-wrap: anywhere;
+    cursor: pointer;
+}
+
+.magewire-notifier .magewire-notifier-item.message[data-type]
+    :is(.magewire-notifier-title, .magewire-notifier-message) {
+    color: inherit;
+}
+
+.magewire-notifier .magewire-notifier-item.message[data-type]
+    .magewire-notifier-occurrences {
+    @apply border-0 bg-gray-500 text-black font-semibold shadow-md;
+}
+
+.magewire-notifier .magewire-notifier-item.message[data-type="success"] {
+    @apply border-2 border-green-500 bg-green-50;
+}
+
+.magewire-notifier .magewire-notifier-item.message[data-type="success"]
+    .magewire-notifier-occurrences {
+    @apply bg-green-50;
+}
+
+.magewire-notifier .magewire-notifier-item.message:is([data-type="info"], [data-type="notice"]) {
+    @apply border-2 border-blue-500 bg-blue-50;
+}
+
+.magewire-notifier .magewire-notifier-item.message:is([data-type="info"], [data-type="notice"])
+    .magewire-notifier-occurrences {
+    @apply bg-blue-50;
+}
+
+.magewire-notifier .magewire-notifier-item.message[data-type="warning"] {
+    @apply border-2 border-yellow-500 bg-yellow-50;
+}
+
+.magewire-notifier .magewire-notifier-item.message[data-type="warning"]
+    .magewire-notifier-occurrences {
+    @apply bg-yellow-50;
+}
+
+.magewire-notifier .magewire-notifier-item.message[data-type="error"] {
+    @apply border-2 border-red-500 bg-red-50;
+}
+
+.magewire-notifier .magewire-notifier-item.message[data-type="error"]
+    .magewire-notifier-occurrences {
+    @apply bg-red-50;
+}

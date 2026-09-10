@@ -23,9 +23,14 @@ bin/magento module:enable Magewirephp_MagewireHyvaTheme
 bin/magento setup:upgrade
 ```
 
-No frontend build is required. Magewire core ships complete,
-framework-independent component styles, and this compatibility module loads
-its optional Hyvä presentation as browser-ready vanilla CSS.
+Magewire core ships complete, framework-independent component styles without a
+frontend build. To include this module's optional Hyvä presentation, rebuild
+the Hyvä theme so its Tailwind sources are picked up:
+
+```bash
+cd app/design/frontend/<Vendor>/<theme>/web/tailwind
+npm run build
+```
 
 ## Documentation
 

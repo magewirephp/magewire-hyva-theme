@@ -2,10 +2,6 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
 >
-    <head>
-        <css src="Magewirephp_MagewireHyvaTheme::css/magewire.css"/>
-    </head>
-
     <body>
         <!-- MOVES -->
         <!-- Ensure all AlpineJS scripts load first to guarantee they are available before Magewire initializes. -->
