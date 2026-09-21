@@ -5,6 +5,8 @@
     --magewire-hyva-notifier-shadow: var(--shadow-xl);
     --magewire-hyva-notifier-occurrences-surface: var(--color-gray-500);
     --magewire-hyva-notifier-occurrences-shadow: var(--shadow-md);
+    --magewire-hyva-notifier-close-color: var(--color-gray-600);
+    --magewire-hyva-notifier-close-hover-color: var(--color-black);
     --magewire-hyva-notifier-success-border: var(--color-green-500);
     --magewire-hyva-notifier-success-surface: var(--color-green-50);
     --magewire-hyva-notifier-info-border: var(--color-blue-500);

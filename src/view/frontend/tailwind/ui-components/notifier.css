@@ -20,6 +20,14 @@
             box-shadow: var(--magewire-hyva-notifier-occurrences-shadow);
         }
 
+        & .magewire-notifier-close {
+            color: var(--magewire-hyva-notifier-close-color);
+
+            &:hover {
+                color: var(--magewire-hyva-notifier-close-hover-color);
+            }
+        }
+
         &[data-type="success"] {
             border: 2px solid var(--magewire-hyva-notifier-success-border);
             background-color: var(--magewire-hyva-notifier-success-surface);

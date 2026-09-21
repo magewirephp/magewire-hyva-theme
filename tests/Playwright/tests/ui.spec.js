@@ -28,9 +28,11 @@ test.describe('Magewire Hyvä Playwright — UI workbench', () => {
 
         const info = notificationOfType(page, 'info');
         const occurrenceBadge = info.locator('.magewire-notifier-occurrences');
+        const close = info.getByRole('button', { name: 'Close message' });
 
         await expect(occurrenceBadge).toBeVisible();
         await expect(occurrenceBadge).toHaveCSS('border-top-width', '0px');
+        await expect(close).toBeVisible();
 
         const surfaces = await Promise.all([
             info.evaluate(element => getComputedStyle(element).backgroundColor),
@@ -39,6 +41,21 @@ test.describe('Magewire Hyvä Playwright — UI workbench', () => {
 
         expect(surfaces[0]).not.toBe('rgba(0, 0, 0, 0)');
         expect(surfaces[1]).toBe(surfaces[0]);
+
+        const themeColor = await page.evaluate(() => {
+            const probe = document.createElement('span');
+            probe.style.color = 'var(--color-gray-600)';
+            document.body.append(probe);
+
+            const color = getComputedStyle(probe).color;
+            probe.remove();
+
+            return color;
+        });
+
+        await expect(close).toHaveCSS('color', themeColor);
+        await close.hover();
+        await expect(close).toHaveCSS('color', 'rgb(0, 0, 0)');
     });
 
     test('keeps the notification controls interactive', async ({ page }) => {
@@ -56,6 +73,13 @@ test.describe('Magewire Hyvä Playwright — UI workbench', () => {
         await workbench(page).getByTestId('ui-notifications-persistent').check();
         await workbench(page).getByTestId('ui-notifications-show').click();
         await expect(visibleNotifications(page)).toHaveCount(4);
+
+        const close = notificationOfType(page, 'success').getByRole('button', { name: 'Close message' });
+
+        await close.focus();
+        await page.keyboard.press('Enter');
+        await expect(notificationOfType(page, 'success')).toHaveCount(0);
+        await expect(visibleNotifications(page)).toHaveCount(3);
 
         await workbench(page).getByTestId('ui-notifications-clear').click();
         await expect(page.locator('.magewire-notifier-item')).toHaveCount(0);

@@ -5,6 +5,8 @@
     --magewire-hyva-notifier-shadow: theme("boxShadow.xl");
     --magewire-hyva-notifier-occurrences-surface: theme("colors.gray.500");
     --magewire-hyva-notifier-occurrences-shadow: theme("boxShadow.md");
+    --magewire-hyva-notifier-close-color: theme("colors.gray.600");
+    --magewire-hyva-notifier-close-hover-color: theme("colors.black");
     --magewire-hyva-notifier-success-border: theme("colors.green.500");
     --magewire-hyva-notifier-success-surface: theme("colors.green.50");
     --magewire-hyva-notifier-info-border: theme("colors.blue.500");
