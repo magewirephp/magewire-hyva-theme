@@ -1,0 +1,16 @@
+.magewire-notifier {
+    --magewire-hyva-notifier-radius: var(--radius-sm);
+    --magewire-hyva-notifier-surface: var(--color-gray-100);
+    --magewire-hyva-notifier-color: var(--color-black);
+    --magewire-hyva-notifier-shadow: var(--shadow-xl);
+    --magewire-hyva-notifier-occurrences-surface: var(--color-gray-500);
+    --magewire-hyva-notifier-occurrences-shadow: var(--shadow-md);
+    --magewire-hyva-notifier-success-border: var(--color-green-500);
+    --magewire-hyva-notifier-success-surface: var(--color-green-50);
+    --magewire-hyva-notifier-info-border: var(--color-blue-500);
+    --magewire-hyva-notifier-info-surface: var(--color-blue-50);
+    --magewire-hyva-notifier-warning-border: var(--color-yellow-500);
+    --magewire-hyva-notifier-warning-surface: var(--color-yellow-50);
+    --magewire-hyva-notifier-error-border: var(--color-red-500);
+    --magewire-hyva-notifier-error-surface: var(--color-red-50);
+}

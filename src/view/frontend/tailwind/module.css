@@ -1,4 +1,5 @@
 @source "../layout/**/*.xml";
 @source "../templates/**/*.phtml";
 
+@import "./ui-components/notifier-v4.css";
 @import "./ui-components/notifier.css";
