@@ -1,0 +1,18 @@
+.magewire-notifier {
+    --magewire-hyva-notifier-radius: theme("borderRadius.DEFAULT");
+    --magewire-hyva-notifier-surface: theme("colors.gray.100");
+    --magewire-hyva-notifier-color: theme("colors.black");
+    --magewire-hyva-notifier-shadow: theme("boxShadow.xl");
+    --magewire-hyva-notifier-occurrences-surface: theme("colors.gray.500");
+    --magewire-hyva-notifier-occurrences-shadow: theme("boxShadow.md");
+    --magewire-hyva-notifier-close-color: theme("colors.gray.600");
+    --magewire-hyva-notifier-close-hover-color: theme("colors.black");
+    --magewire-hyva-notifier-success-border: theme("colors.green.500");
+    --magewire-hyva-notifier-success-surface: theme("colors.green.50");
+    --magewire-hyva-notifier-info-border: theme("colors.blue.500");
+    --magewire-hyva-notifier-info-surface: theme("colors.blue.50");
+    --magewire-hyva-notifier-warning-border: theme("colors.yellow.500");
+    --magewire-hyva-notifier-warning-surface: theme("colors.yellow.50");
+    --magewire-hyva-notifier-error-border: theme("colors.red.500");
+    --magewire-hyva-notifier-error-surface: theme("colors.red.50");
+}

@@ -31,17 +31,12 @@ class HyvaConfigGenerateBefore implements ObserverInterface
     {
         $config = $event->getData('config');
         $extensions = $config->hasData('extensions') ? $config->getData('extensions') : [];
+        $path = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Magewirephp_MagewireHyvaTheme');
+        $extension = ['src' => substr($path, strlen(BP) + 1)];
 
-        $path = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, 'Magewirephp_Magewire');
-
-        // Since Hyva is the first-party, it needs to also register Magewire itself.
-        $extensions[] = ['src' => substr($path, strlen(BP) + 1)];
-
-        $moduleName = implode('_', array_slice(explode('\\', __CLASS__), 0, 2));
-        $path = $this->componentRegistrar->getPath(ComponentRegistrar::MODULE, $moduleName);
-
-        // Only use the path relative to the Magento base dir.
-        $extensions[] = ['src' => substr($path, strlen(BP) + 1)];
+        if (! in_array($extension, $extensions, true)) {
+            $extensions[] = $extension;
+        }
 
         $config->setData('extensions', $extensions);
     }

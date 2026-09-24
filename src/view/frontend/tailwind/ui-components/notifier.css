@@ -1,59 +1,67 @@
 .magewire-notifier {
-    --offset: 0.5rem;
-    --index: 40;
-    --gap: 0.25rem;
-    z-index: var(--index);
-    position: fixed;
-    inset-inline: 0;
-    inset-block-end: 0;
-    max-width: 100%;
-    margin: var(--offset);
-    display: inline-flex;
-    flex-direction: column;
-    gap: var(--gap);
+    & .magewire-notifier-item.message[data-type] {
+        border: 0;
+        border-radius: var(--magewire-hyva-notifier-radius);
+        background-color: var(--magewire-hyva-notifier-surface);
+        color: var(--magewire-hyva-notifier-color);
+        font-size: inherit;
+        font-weight: 600;
+        line-height: inherit;
+        box-shadow: var(--magewire-hyva-notifier-shadow);
 
-    /* Desktop */
-    @media(min-width: 768px) {
-        --gap: 0.5rem;
-        --offset: 1.5rem;
-        inset-inline-end: auto;
-    }
-
-    & .message {
-        @apply shadow-xl;
-
-        margin-bottom: 0;
-        padding-inline: 1rem;
-        padding-block: 0.875rem;
-        max-width: 70ch;
-        justify-content: flex-start;
-        overflow-wrap: anywhere;
-        cursor: pointer;
-        gap: 0.5rem;
+        & :is(.magewire-notifier-title, .magewire-notifier-message) {
+            color: inherit;
+        }
 
         & .magewire-notifier-occurrences {
-            @apply bg-gray-500 text-black font-semibold shadow-md;
+            border: 0;
+            background-color: var(--magewire-hyva-notifier-occurrences-surface);
+            color: var(--magewire-hyva-notifier-color);
+            box-shadow: var(--magewire-hyva-notifier-occurrences-shadow);
         }
 
-        &.success .magewire-notifier-occurrences {
-            @apply bg-green-50;
+        & .magewire-notifier-close {
+            color: var(--magewire-hyva-notifier-close-color);
+
+            &:hover {
+                color: var(--magewire-hyva-notifier-close-hover-color);
+            }
         }
 
-        &.info .magewire-notifier-occurrences,
-        &.notice .magewire-notifier-occurrences {
-            @apply bg-blue-50;
+        &[data-type="success"] {
+            border: 2px solid var(--magewire-hyva-notifier-success-border);
+            background-color: var(--magewire-hyva-notifier-success-surface);
+
+            & .magewire-notifier-occurrences {
+                background-color: var(--magewire-hyva-notifier-success-surface);
+            }
         }
 
-        &.warning .magewire-notifier-occurrences {
-            @apply bg-yellow-50;
+        &:is([data-type="info"], [data-type="notice"]) {
+            border: 2px solid var(--magewire-hyva-notifier-info-border);
+            background-color: var(--magewire-hyva-notifier-info-surface);
+
+            & .magewire-notifier-occurrences {
+                background-color: var(--magewire-hyva-notifier-info-surface);
+            }
         }
 
-        &.error .magewire-notifier-occurrences {
-            @apply bg-red-50;
+        &[data-type="warning"] {
+            border: 2px solid var(--magewire-hyva-notifier-warning-border);
+            background-color: var(--magewire-hyva-notifier-warning-surface);
+
+            & .magewire-notifier-occurrences {
+                background-color: var(--magewire-hyva-notifier-warning-surface);
+            }
+        }
+
+        &[data-type="error"] {
+            border: 2px solid var(--magewire-hyva-notifier-error-border);
+            background-color: var(--magewire-hyva-notifier-error-surface);
+
+            & .magewire-notifier-occurrences {
+                background-color: var(--magewire-hyva-notifier-error-surface);
+            }
         }
     }
-}
-
-.magewire-notifier-after {
-    margin-inline-start: auto;
 }

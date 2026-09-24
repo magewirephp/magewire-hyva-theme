@@ -1,5 +1,6 @@
 module.exports = {
-  content: [
-      '../../../../themes/Hyva/view/frontend/templates/**/*.phtml'
-  ]
+    content: [
+        '../layout/**/*.xml',
+        '../templates/**/*.phtml',
+    ]
 };
