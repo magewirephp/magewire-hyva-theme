@@ -1,0 +1,133 @@
+<?php
+
+declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+use Magewirephp\Magewire\ViewModel\Magewire as MagewireViewModel;
+
+/** @var Template $block */
+/** @var MagewireViewModel $magewireViewModel */
+
+$magewireViewModel = $block->getData('view_model');
+$magewireFragment = $magewireViewModel->utils()->fragment();
+?>
+<?php $script = $magewireFragment->make()->script()->start() ?>
+<script>
+    function magewireComponentLoaderAddon() {
+        'use strict';
+
+        const active = new Map();
+        const listeners = new Set();
+
+        const publish = entry => {
+            listeners.forEach(listener => listener(entry));
+        };
+
+        return {
+            init: function() {
+                document.addEventListener('magewire:init', () => {
+                    Magewire.hook('component.init', ({ component, cleanup }) => {
+                        cleanup(() => this.cancel(component.id));
+                    });
+
+                    Magewire.hook('commit', ({ component, succeed, fail }) => {
+                        const finish = this.start(component);
+
+                        succeed(finish);
+                        fail(finish);
+                    });
+                }, { once: true });
+            },
+
+            subscribe: function(listener) {
+                listeners.add(listener);
+                return () => listeners.delete(listener);
+            },
+
+            get: function(id) {
+                return active.get(id) || null;
+            },
+
+            schedule: function(entry) {
+                clearTimeout(entry.timer);
+
+                if (entry.visible || entry.requests.size === 0) {
+                    return;
+                }
+
+                const started = Math.min(...entry.requests);
+                const timing = window.MagewireUtilities.loaderTiming;
+                const remaining = Math.max(0, timing.threshold(entry.component.name) - (performance.now() - started));
+
+                entry.timer = setTimeout(() => {
+                    entry.timer = null;
+
+                    if (entry.requests.size && timing.shouldShow(entry.component.name, performance.now() - started)) {
+                        entry.visible = true;
+                        publish(entry);
+                    }
+                }, remaining);
+            },
+
+            start: function(component) {
+                const started = performance.now();
+                let entry = active.get(component.id);
+
+                if (! entry) {
+                    entry = {
+                        id: component.id,
+                        component,
+                        requests: new Set(),
+                        visible: false,
+                        timer: null
+                    };
+                    active.set(component.id, entry);
+                }
+
+                entry.component = component;
+                entry.requests.add(started);
+                this.schedule(entry);
+
+                let finished = false;
+
+                return () => {
+                    if (finished || active.get(component.id) !== entry) {
+                        return;
+                    }
+
+                    finished = true;
+                    window.MagewireUtilities.loaderTiming.record(component.name, performance.now() - started);
+                    entry.requests.delete(started);
+
+                    if (entry.requests.size === 0) {
+                        this.cancel(component.id);
+                    } else {
+                        this.schedule(entry);
+                    }
+                };
+            },
+
+            cancel: function(id) {
+                const entry = active.get(id);
+
+                if (! entry) {
+                    return;
+                }
+
+                clearTimeout(entry.timer);
+                entry.timer = null;
+                entry.requests.clear();
+
+                if (entry.visible) {
+                    entry.visible = false;
+                    publish(entry);
+                }
+
+                active.delete(id);
+            }
+        };
+    }
+
+    window.MagewireAddons.register('componentLoader', magewireComponentLoaderAddon);
+</script>
+<?php $script->end() ?>

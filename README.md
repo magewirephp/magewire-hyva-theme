@@ -32,6 +32,20 @@ cd app/design/frontend/<Vendor>/<theme>/web/tailwind
 npm run build
 ```
 
+## Component loader
+
+Magewire requests show a small spinner in the center of the component only when
+they take long enough to need feedback. The first request waits 500 ms. A slow
+connection or recent slow requests shorten the wait to 250 ms; consistently fast
+requests extend it to 700 ms. Recent timings are kept per component for the
+browser session.
+
+The request API is `MagewireAddons.componentLoader`; its `start(component)` method
+returns a function that finishes that request, and `subscribe(listener)` reports
+visibility changes. `MagewireUtilities.loaderTiming` provides `record`,
+`threshold`, and `shouldShow` for timing decisions. The spinner markup comes from
+`Magewirephp_Magewire::magewire/utils/icons/loading.phtml`.
+
 ## Documentation
 
 - [Hyvä CSP script bootstrap](https://docs.magewirephp.nl/pages/theming/csp-script-bootstrap.html)

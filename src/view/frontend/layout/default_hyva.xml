@@ -2,6 +2,10 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
 >
+    <head>
+        <css src="Magewirephp_MagewireHyvaTheme::css/component-loader.css"/>
+    </head>
+
     <body>
         <!-- MOVES -->
         <!-- Ensure all AlpineJS scripts load first to guarantee they are available before Magewire initializes. -->
@@ -39,6 +43,25 @@
             <block name="magewire.features.support-magento-flash-messages"
                    template="Magewirephp_MagewireHyvaTheme::magewire-features/support-magento-flash-messages/support-magento-flash-messages.phtml"
             />
+        </referenceContainer>
+
+        <referenceContainer name="magewire.utilities.after">
+            <block name="magewire.utilities.loader-timing"
+                   template="Magewirephp_MagewireHyvaTheme::js/magewire/utilities/loader-timing.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="magewire.addons.after">
+            <block name="magewire.addons.component-loader"
+                   template="Magewirephp_MagewireHyvaTheme::js/magewire/addons/component-loader.phtml"/>
+        </referenceContainer>
+
+        <referenceContainer name="magewire.ui-components">
+            <block name="magewire.ui-components.component-loader"
+                   template="Magewirephp_MagewireHyvaTheme::magewire/ui-components/component-loader.phtml">
+                <block name="magewire.ui-components.component-loader.spinner"
+                       as="spinner"
+                       template="Magewirephp_Magewire::magewire/utils/icons/loading.phtml"/>
+            </block>
         </referenceContainer>
 
         <referenceContainer name="magewire.internal.backwards-compatibility">
