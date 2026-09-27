@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.1.2](https://github.com/magewirephp/magewire-hyva-theme/compare/3.1.1...3.1.2) (2026-09-24)
+
+
+### Code Refactoring
+
+* keep Tailwind styling in compatibility module ([bb15d64](https://github.com/magewirephp/magewire-hyva-theme/commit/bb15d64136ef733266028ca15142d051a3b5e20a))
+* replace Tailwind notifier styles with vanilla CSS ([842b11a](https://github.com/magewirephp/magewire-hyva-theme/commit/842b11a4f5058ba25d566f0803deaa34a83a2090))
+* scope Tailwind styling to Hyvä compatibility ([87afdd3](https://github.com/magewirephp/magewire-hyva-theme/commit/87afdd31b6d07b10566dcc1f9de0e83fecdd72c8))
+* split notifier tokens by Tailwind version ([b12842b](https://github.com/magewirephp/magewire-hyva-theme/commit/b12842bb09b3b340c4f3c356c5fa3c2110abaef2))
+
+
+### Miscellaneous Chores
+
+* exclude agent work files ([32b45ba](https://github.com/magewirephp/magewire-hyva-theme/commit/32b45ba16b9dd832d92b505b3331e216a4c28632))
+
 ## [3.1.1](https://github.com/magewirephp/magewire-hyva-theme/compare/3.1.0...3.1.1) (2026-09-01)
 
 
