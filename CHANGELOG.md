@@ -1,5 +1,18 @@
 # Changelog
 
+## [3.1.3](https://github.com/magewirephp/magewire-hyva-theme/compare/3.1.2...3.1.3) (2026-10-12)
+
+
+### Bug Fixes
+
+* **bc:** preserve Magewire 1 browser-event payloads in Hyva ([1cc1db3](https://github.com/magewirephp/magewire-hyva-theme/commit/1cc1db324c1345742c780895d127d21ce75e840f))
+* **bc:** preserve Magewire 1 browser-event payloads in Hyva ([8811b02](https://github.com/magewirephp/magewire-hyva-theme/commit/8811b02548bcad7a722bd3cd7acc9d24ded7e81e))
+
+
+### Code Refactoring
+
+* **bc:** name the dispatchBrowserEvent delivery hook explicitly ([99ec08f](https://github.com/magewirephp/magewire-hyva-theme/commit/99ec08f3ba9681a9c56dea4505e415d2448f843f))
+
 ## [3.1.2](https://github.com/magewirephp/magewire-hyva-theme/compare/3.1.1...3.1.2) (2026-09-24)
 
 
