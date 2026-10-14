@@ -21,3 +21,8 @@ The browser-event compatibility tests use this module's
 from `dispatchBrowserEvent()` and Livewire 3 payload shapes from `dispatch()` on the same
 BC-enabled component. This requires the core browser-event queue change from
 [Magewire PR #326](https://github.com/magewirephp/magewire/pull/326), released before this module.
+
+The emitUp() compatibility tests use this module's `/magewire/playwright/emitup` fixture: a grandparent, parent,
+child and sibling component plus an unrelated one. They verify that `emitUp()` and `emitToRefreshUp()` reach the
+ancestors only, as in Magewire 1, and that `dispatch()` keeps its Livewire 3 delivery. This requires the core
+queue change from [Magewire PR #341](https://github.com/magewirephp/magewire/pull/341).
