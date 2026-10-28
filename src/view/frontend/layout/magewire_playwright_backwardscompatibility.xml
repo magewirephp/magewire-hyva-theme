@@ -14,6 +14,53 @@
                     </argument>
                 </arguments>
             </block>
+
+            <!-- emitUp(): grandparent > parent > (child, sibling), and an unrelated stranger. -->
+            <block name="magewire-hyva.playwright.backwards_compatibility.emit_up.grandparent"
+                   template="Magewirephp_MagewireHyvaTheme::tests/magewire/playwright/backwards_compatibility/emit_up.phtml"
+            >
+                <arguments>
+                    <argument name="magewire" xsi:type="object" shared="false">
+                        Magewirephp\MagewireHyvaTheme\Magewire\Playwright\BackwardsCompatibility\EmitUp
+                    </argument>
+                </arguments>
+                <block name="magewire-hyva.playwright.backwards_compatibility.emit_up.parent"
+                       template="Magewirephp_MagewireHyvaTheme::tests/magewire/playwright/backwards_compatibility/emit_up.phtml"
+                >
+                    <arguments>
+                        <argument name="magewire" xsi:type="object" shared="false">
+                            Magewirephp\MagewireHyvaTheme\Magewire\Playwright\BackwardsCompatibility\EmitUp
+                        </argument>
+                    </arguments>
+                    <block name="magewire-hyva.playwright.backwards_compatibility.emit_up.child"
+                           template="Magewirephp_MagewireHyvaTheme::tests/magewire/playwright/backwards_compatibility/emit_up.phtml"
+                    >
+                        <arguments>
+                            <argument name="magewire" xsi:type="object" shared="false">
+                                Magewirephp\MagewireHyvaTheme\Magewire\Playwright\BackwardsCompatibility\EmitUp
+                            </argument>
+                        </arguments>
+                    </block>
+                    <block name="magewire-hyva.playwright.backwards_compatibility.emit_up.sibling"
+                           template="Magewirephp_MagewireHyvaTheme::tests/magewire/playwright/backwards_compatibility/emit_up.phtml"
+                    >
+                        <arguments>
+                            <argument name="magewire" xsi:type="object" shared="false">
+                                Magewirephp\MagewireHyvaTheme\Magewire\Playwright\BackwardsCompatibility\EmitUp
+                            </argument>
+                        </arguments>
+                    </block>
+                </block>
+            </block>
+            <block name="magewire-hyva.playwright.backwards_compatibility.emit_up.stranger"
+                   template="Magewirephp_MagewireHyvaTheme::tests/magewire/playwright/backwards_compatibility/emit_up.phtml"
+            >
+                <arguments>
+                    <argument name="magewire" xsi:type="object" shared="false">
+                        Magewirephp\MagewireHyvaTheme\Magewire\Playwright\BackwardsCompatibility\EmitUp
+                    </argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>

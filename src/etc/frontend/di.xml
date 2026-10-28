@@ -9,6 +9,10 @@
                     <item name="type" xsi:type="string">Magewirephp\MagewireHyvaTheme\Features\SupportMagewireBackwardsCompatibility\SupportDispatchBrowserEvent</item>
                     <item name="sort_order" xsi:type="number">1660</item>
                 </item>
+                <item name="magewire_bc_emit_up" xsi:type="array">
+                    <item name="type" xsi:type="string">Magewirephp\MagewireHyvaTheme\Features\SupportMagewireBackwardsCompatibility\SupportEmitUp</item>
+                    <item name="sort_order" xsi:type="number">1670</item>
+                </item>
             </argument>
         </arguments>
     </type>
